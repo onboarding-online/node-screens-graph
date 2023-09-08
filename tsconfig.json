@@ -1,0 +1,22 @@
+{
+  "compileOnSave": true,
+  "compilerOptions": {
+    "baseUrl": "./",
+    "declaration": true,
+    "lib": [
+      "es2020",
+      "esnext",
+      "dom"
+    ],
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "sourceMap": true,
+    "target": "es2020",
+    "outDir": "./lib",
+    "noUnusedParameters": false
+  },
+  "exclude": [
+    "node_modules",
+    "lib"
+  ]
+}
