@@ -95,6 +95,8 @@ export * from './ScreenInputType';
 export * from './ScreenPermissionType';
 export * from './ScreenProgressBarTitle';
 export * from './ScreenProgressBarTitleAllOf';
+export * from './ScreenScalableImageTextSelection';
+export * from './ScreenScalableImageTextSelectionAllOf';
 export * from './ScreenSlider';
 export * from './ScreenSliderAllOf';
 export * from './ScreenStruct';

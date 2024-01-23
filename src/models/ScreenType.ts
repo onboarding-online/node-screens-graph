@@ -32,7 +32,8 @@ export const ScreenType = {
     ScreenTitleSubtitlePicker: 'ScreenTitleSubtitlePicker',
     ScreenImageTitleSubtitlePicker: 'ScreenImageTitleSubtitlePicker',
     ScreenImageTitleSubtitleMultipleSelectionList: 'ScreenImageTitleSubtitleMultipleSelectionList',
-    ScreenTooltipPermissions: 'ScreenTooltipPermissions'
+    ScreenTooltipPermissions: 'ScreenTooltipPermissions',
+    ScreenScalableImageTextSelection: 'ScreenScalableImageTextSelection'
 } as const;
 export type ScreenType = typeof ScreenType[keyof typeof ScreenType];
 
