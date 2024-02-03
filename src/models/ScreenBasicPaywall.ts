@@ -55,6 +55,12 @@ import {
     ScreenTimerFromJSONTyped,
     ScreenTimerToJSON,
 } from './ScreenTimer';
+import type { SubscriptionList } from './SubscriptionList';
+import {
+    SubscriptionListFromJSON,
+    SubscriptionListFromJSONTyped,
+    SubscriptionListToJSON,
+} from './SubscriptionList';
 import type { Text } from './Text';
 import {
     TextFromJSON,
@@ -152,6 +158,12 @@ export interface ScreenBasicPaywall {
      * @memberof ScreenBasicPaywall
      */
     list: RegularList;
+    /**
+     * 
+     * @type {SubscriptionList}
+     * @memberof ScreenBasicPaywall
+     */
+    subscriptions: SubscriptionList;
 }
 
 /**
@@ -170,6 +182,7 @@ export function instanceOfScreenBasicPaywall(value: object): boolean {
     isInstance = isInstance && "title" in value;
     isInstance = isInstance && "subtitle" in value;
     isInstance = isInstance && "list" in value;
+    isInstance = isInstance && "subscriptions" in value;
 
     return isInstance;
 }
@@ -197,6 +210,7 @@ export function ScreenBasicPaywallFromJSONTyped(json: any, ignoreDiscriminator: 
         'image': !exists(json, 'image') ? undefined : ImageFromJSON(json['image']),
         'video': !exists(json, 'video') ? undefined : VideoFromJSON(json['video']),
         'list': RegularListFromJSON(json['list']),
+        'subscriptions': SubscriptionListFromJSON(json['subscriptions']),
     };
 }
 
@@ -222,6 +236,7 @@ export function ScreenBasicPaywallToJSON(value?: ScreenBasicPaywall | null): any
         'image': ImageToJSON(value.image),
         'video': VideoToJSON(value.video),
         'list': RegularListToJSON(value.list),
+        'subscriptions': SubscriptionListToJSON(value.subscriptions),
     };
 }
 
