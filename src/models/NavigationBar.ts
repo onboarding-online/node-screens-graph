@@ -12,54 +12,27 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
-import type { Button } from './Button';
 import {
-    ButtonFromJSON,
-    ButtonFromJSONTyped,
-    ButtonToJSON,
-} from './Button';
-import type { PageIndicator } from './PageIndicator';
+    BasicNavigationBar,
+    instanceOfBasicNavigationBar,
+    BasicNavigationBarFromJSON,
+    BasicNavigationBarFromJSONTyped,
+    BasicNavigationBarToJSON,
+} from './BasicNavigationBar';
 import {
-    PageIndicatorFromJSON,
-    PageIndicatorFromJSONTyped,
-    PageIndicatorToJSON,
-} from './PageIndicator';
+    PaywallNavigationBar,
+    instanceOfPaywallNavigationBar,
+    PaywallNavigationBarFromJSON,
+    PaywallNavigationBarFromJSONTyped,
+    PaywallNavigationBarToJSON,
+} from './PaywallNavigationBar';
 
 /**
+ * @type NavigationBar
  * Navigation bar
  * @export
- * @interface NavigationBar
  */
-export interface NavigationBar {
-    /**
-     * 
-     * @type {Button}
-     * @memberof NavigationBar
-     */
-    back?: Button;
-    /**
-     * 
-     * @type {Button}
-     * @memberof NavigationBar
-     */
-    skip?: Button;
-    /**
-     * 
-     * @type {PageIndicator}
-     * @memberof NavigationBar
-     */
-    pageIndicator?: PageIndicator;
-}
-
-/**
- * Check if a given object implements the NavigationBar interface.
- */
-export function instanceOfNavigationBar(value: object): boolean {
-    let isInstance = true;
-
-    return isInstance;
-}
+export type NavigationBar = BasicNavigationBar | PaywallNavigationBar;
 
 export function NavigationBarFromJSON(json: any): NavigationBar {
     return NavigationBarFromJSONTyped(json, false);
@@ -69,12 +42,7 @@ export function NavigationBarFromJSONTyped(json: any, ignoreDiscriminator: boole
     if ((json === undefined) || (json === null)) {
         return json;
     }
-    return {
-        
-        'back': !exists(json, 'back') ? undefined : ButtonFromJSON(json['back']),
-        'skip': !exists(json, 'skip') ? undefined : ButtonFromJSON(json['skip']),
-        'pageIndicator': !exists(json, 'pageIndicator') ? undefined : PageIndicatorFromJSON(json['pageIndicator']),
-    };
+    return { ...BasicNavigationBarFromJSONTyped(json, true), ...PaywallNavigationBarFromJSONTyped(json, true) };
 }
 
 export function NavigationBarToJSON(value?: NavigationBar | null): any {
@@ -84,11 +52,14 @@ export function NavigationBarToJSON(value?: NavigationBar | null): any {
     if (value === null) {
         return null;
     }
-    return {
-        
-        'back': ButtonToJSON(value.back),
-        'skip': ButtonToJSON(value.skip),
-        'pageIndicator': PageIndicatorToJSON(value.pageIndicator),
-    };
+
+    if (instanceOfBasicNavigationBar(value)) {
+        return BasicNavigationBarToJSON(value as BasicNavigationBar);
+    }
+    if (instanceOfPaywallNavigationBar(value)) {
+        return PaywallNavigationBarToJSON(value as PaywallNavigationBar);
+    }
+
+    return {};
 }
 

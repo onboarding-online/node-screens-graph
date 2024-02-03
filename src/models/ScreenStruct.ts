@@ -20,6 +20,13 @@ import {
     CustomScreenToJSON,
 } from './CustomScreen';
 import {
+    ScreenBasicPaywall,
+    instanceOfScreenBasicPaywall,
+    ScreenBasicPaywallFromJSON,
+    ScreenBasicPaywallFromJSONTyped,
+    ScreenBasicPaywallToJSON,
+} from './ScreenBasicPaywall';
+import {
     ScreenImageTitleSubtitleList,
     instanceOfScreenImageTitleSubtitleList,
     ScreenImageTitleSubtitleListFromJSON,
@@ -130,7 +137,7 @@ import {
  * Screen struct
  * @export
  */
-export type ScreenStruct = CustomScreen | ScreenImageTitleSubtitleList | ScreenImageTitleSubtitleMultipleSelectionList | ScreenImageTitleSubtitlePicker | ScreenImageTitleSubtitles | ScreenProgressBarTitle | ScreenScalableImageTextSelection | ScreenSlider | ScreenTableMultipleSelection | ScreenTableSingleSelection | ScreenTitleSubtitleCalendar | ScreenTitleSubtitleField | ScreenTitleSubtitlePicker | ScreenTooltipPermissions | ScreenTwoColumnMultipleSelection | ScreenTwoColumnSingleSelection;
+export type ScreenStruct = CustomScreen | ScreenBasicPaywall | ScreenImageTitleSubtitleList | ScreenImageTitleSubtitleMultipleSelectionList | ScreenImageTitleSubtitlePicker | ScreenImageTitleSubtitles | ScreenProgressBarTitle | ScreenScalableImageTextSelection | ScreenSlider | ScreenTableMultipleSelection | ScreenTableSingleSelection | ScreenTitleSubtitleCalendar | ScreenTitleSubtitleField | ScreenTitleSubtitlePicker | ScreenTooltipPermissions | ScreenTwoColumnMultipleSelection | ScreenTwoColumnSingleSelection;
 
 export function ScreenStructFromJSON(json: any): ScreenStruct {
     return ScreenStructFromJSONTyped(json, false);
@@ -140,7 +147,7 @@ export function ScreenStructFromJSONTyped(json: any, ignoreDiscriminator: boolea
     if ((json === undefined) || (json === null)) {
         return json;
     }
-    return { ...CustomScreenFromJSONTyped(json, true), ...ScreenImageTitleSubtitleListFromJSONTyped(json, true), ...ScreenImageTitleSubtitleMultipleSelectionListFromJSONTyped(json, true), ...ScreenImageTitleSubtitlePickerFromJSONTyped(json, true), ...ScreenImageTitleSubtitlesFromJSONTyped(json, true), ...ScreenProgressBarTitleFromJSONTyped(json, true), ...ScreenScalableImageTextSelectionFromJSONTyped(json, true), ...ScreenSliderFromJSONTyped(json, true), ...ScreenTableMultipleSelectionFromJSONTyped(json, true), ...ScreenTableSingleSelectionFromJSONTyped(json, true), ...ScreenTitleSubtitleCalendarFromJSONTyped(json, true), ...ScreenTitleSubtitleFieldFromJSONTyped(json, true), ...ScreenTitleSubtitlePickerFromJSONTyped(json, true), ...ScreenTooltipPermissionsFromJSONTyped(json, true), ...ScreenTwoColumnMultipleSelectionFromJSONTyped(json, true), ...ScreenTwoColumnSingleSelectionFromJSONTyped(json, true) };
+    return { ...CustomScreenFromJSONTyped(json, true), ...ScreenBasicPaywallFromJSONTyped(json, true), ...ScreenImageTitleSubtitleListFromJSONTyped(json, true), ...ScreenImageTitleSubtitleMultipleSelectionListFromJSONTyped(json, true), ...ScreenImageTitleSubtitlePickerFromJSONTyped(json, true), ...ScreenImageTitleSubtitlesFromJSONTyped(json, true), ...ScreenProgressBarTitleFromJSONTyped(json, true), ...ScreenScalableImageTextSelectionFromJSONTyped(json, true), ...ScreenSliderFromJSONTyped(json, true), ...ScreenTableMultipleSelectionFromJSONTyped(json, true), ...ScreenTableSingleSelectionFromJSONTyped(json, true), ...ScreenTitleSubtitleCalendarFromJSONTyped(json, true), ...ScreenTitleSubtitleFieldFromJSONTyped(json, true), ...ScreenTitleSubtitlePickerFromJSONTyped(json, true), ...ScreenTooltipPermissionsFromJSONTyped(json, true), ...ScreenTwoColumnMultipleSelectionFromJSONTyped(json, true), ...ScreenTwoColumnSingleSelectionFromJSONTyped(json, true) };
 }
 
 export function ScreenStructToJSON(value?: ScreenStruct | null): any {
@@ -153,6 +160,9 @@ export function ScreenStructToJSON(value?: ScreenStruct | null): any {
 
     if (instanceOfCustomScreen(value)) {
         return CustomScreenToJSON(value as CustomScreen);
+    }
+    if (instanceOfScreenBasicPaywall(value)) {
+        return ScreenBasicPaywallToJSON(value as ScreenBasicPaywall);
     }
     if (instanceOfScreenImageTitleSubtitleList(value)) {
         return ScreenImageTitleSubtitleListToJSON(value as ScreenImageTitleSubtitleList);

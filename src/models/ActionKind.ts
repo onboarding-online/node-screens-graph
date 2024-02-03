@@ -18,6 +18,8 @@
  * @export
  */
 export const ActionKind = {
+    Purchase: 'Purchase',
+    Restore: 'Restore',
     Next: 'Next',
     Back: 'Back',
     Finish: 'Finish',
