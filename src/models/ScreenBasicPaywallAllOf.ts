@@ -19,6 +19,18 @@ import {
     ImageFromJSONTyped,
     ImageToJSON,
 } from './Image';
+import type { PaywallFooter } from './PaywallFooter';
+import {
+    PaywallFooterFromJSON,
+    PaywallFooterFromJSONTyped,
+    PaywallFooterToJSON,
+} from './PaywallFooter';
+import type { PaywallNavigationBar } from './PaywallNavigationBar';
+import {
+    PaywallNavigationBarFromJSON,
+    PaywallNavigationBarFromJSONTyped,
+    PaywallNavigationBarToJSON,
+} from './PaywallNavigationBar';
 import type { RegularList } from './RegularList';
 import {
     RegularListFromJSON,
@@ -62,6 +74,18 @@ export interface ScreenBasicPaywallAllOf {
      * @memberof ScreenBasicPaywallAllOf
      */
     screenBasicPaywall: string;
+    /**
+     * 
+     * @type {PaywallNavigationBar}
+     * @memberof ScreenBasicPaywallAllOf
+     */
+    navigationBar?: PaywallNavigationBar;
+    /**
+     * 
+     * @type {PaywallFooter}
+     * @memberof ScreenBasicPaywallAllOf
+     */
+    footer?: PaywallFooter;
     /**
      * 
      * @type {Text}
@@ -132,6 +156,8 @@ export function ScreenBasicPaywallAllOfFromJSONTyped(json: any, ignoreDiscrimina
     return {
         
         'screenBasicPaywall': json['screenBasicPaywall'],
+        'navigationBar': !exists(json, 'navigationBar') ? undefined : PaywallNavigationBarFromJSON(json['navigationBar']),
+        'footer': !exists(json, 'footer') ? undefined : PaywallFooterFromJSON(json['footer']),
         'title': TextFromJSON(json['title']),
         'subtitle': TextFromJSON(json['subtitle']),
         'image': !exists(json, 'image') ? undefined : ImageFromJSON(json['image']),
@@ -152,6 +178,8 @@ export function ScreenBasicPaywallAllOfToJSON(value?: ScreenBasicPaywallAllOf | 
     return {
         
         'screenBasicPaywall': value.screenBasicPaywall,
+        'navigationBar': PaywallNavigationBarToJSON(value.navigationBar),
+        'footer': PaywallFooterToJSON(value.footer),
         'title': TextToJSON(value.title),
         'subtitle': TextToJSON(value.subtitle),
         'image': ImageToJSON(value.image),

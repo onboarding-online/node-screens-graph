@@ -19,8 +19,6 @@ export * from './BaseNavLink';
 export * from './BaseNavLinkContent';
 export * from './BaseText';
 export * from './BaseVideo';
-export * from './BasicFooter';
-export * from './BasicNavigationBar';
 export * from './BasicScreen';
 export * from './BasicScreenBlock';
 export * from './Box';

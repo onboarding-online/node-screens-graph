@@ -13,24 +13,24 @@
  */
 
 import { exists, mapValues } from '../runtime';
-import type { Footer } from './Footer';
-import {
-    FooterFromJSON,
-    FooterFromJSONTyped,
-    FooterToJSON,
-} from './Footer';
 import type { Image } from './Image';
 import {
     ImageFromJSON,
     ImageFromJSONTyped,
     ImageToJSON,
 } from './Image';
-import type { NavigationBar } from './NavigationBar';
+import type { PaywallFooter } from './PaywallFooter';
 import {
-    NavigationBarFromJSON,
-    NavigationBarFromJSONTyped,
-    NavigationBarToJSON,
-} from './NavigationBar';
+    PaywallFooterFromJSON,
+    PaywallFooterFromJSONTyped,
+    PaywallFooterToJSON,
+} from './PaywallFooter';
+import type { PaywallNavigationBar } from './PaywallNavigationBar';
+import {
+    PaywallNavigationBarFromJSON,
+    PaywallNavigationBarFromJSONTyped,
+    PaywallNavigationBarToJSON,
+} from './PaywallNavigationBar';
 import type { RegularList } from './RegularList';
 import {
     RegularListFromJSON,
@@ -82,16 +82,16 @@ import {
 export interface ScreenBasicPaywall {
     /**
      * 
-     * @type {NavigationBar}
+     * @type {PaywallNavigationBar}
      * @memberof ScreenBasicPaywall
      */
-    navigationBar: NavigationBar;
+    navigationBar: PaywallNavigationBar;
     /**
      * 
-     * @type {Footer}
+     * @type {PaywallFooter}
      * @memberof ScreenBasicPaywall
      */
-    footer: Footer;
+    footer: PaywallFooter;
     /**
      * 
      * @type {ScreenBasicPaywallBlock}
@@ -197,8 +197,8 @@ export function ScreenBasicPaywallFromJSONTyped(json: any, ignoreDiscriminator: 
     }
     return {
         
-        'navigationBar': NavigationBarFromJSON(json['navigationBar']),
-        'footer': FooterFromJSON(json['footer']),
+        'navigationBar': PaywallNavigationBarFromJSON(json['navigationBar']),
+        'footer': PaywallFooterFromJSON(json['footer']),
         'styles': ScreenBasicPaywallBlockFromJSON(json['styles']),
         'permission': RequestPermissionFromJSON(json['permission']),
         'timer': ScreenTimerFromJSON(json['timer']),
@@ -223,8 +223,8 @@ export function ScreenBasicPaywallToJSON(value?: ScreenBasicPaywall | null): any
     }
     return {
         
-        'navigationBar': NavigationBarToJSON(value.navigationBar),
-        'footer': FooterToJSON(value.footer),
+        'navigationBar': PaywallNavigationBarToJSON(value.navigationBar),
+        'footer': PaywallFooterToJSON(value.footer),
         'styles': ScreenBasicPaywallBlockToJSON(value.styles),
         'permission': RequestPermissionToJSON(value.permission),
         'timer': ScreenTimerToJSON(value.timer),

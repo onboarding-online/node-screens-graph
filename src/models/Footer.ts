@@ -12,27 +12,42 @@
  * Do not edit the class manually.
  */
 
+import { exists, mapValues } from '../runtime';
+import type { Button } from './Button';
 import {
-    BasicFooter,
-    instanceOfBasicFooter,
-    BasicFooterFromJSON,
-    BasicFooterFromJSONTyped,
-    BasicFooterToJSON,
-} from './BasicFooter';
-import {
-    PaywallFooter,
-    instanceOfPaywallFooter,
-    PaywallFooterFromJSON,
-    PaywallFooterFromJSONTyped,
-    PaywallFooterToJSON,
-} from './PaywallFooter';
+    ButtonFromJSON,
+    ButtonFromJSONTyped,
+    ButtonToJSON,
+} from './Button';
 
 /**
- * @type Footer
- * 
+ * Footer
  * @export
+ * @interface Footer
  */
-export type Footer = BasicFooter | PaywallFooter;
+export interface Footer {
+    /**
+     * 
+     * @type {Button}
+     * @memberof Footer
+     */
+    button1?: Button;
+    /**
+     * 
+     * @type {Button}
+     * @memberof Footer
+     */
+    button2?: Button;
+}
+
+/**
+ * Check if a given object implements the Footer interface.
+ */
+export function instanceOfFooter(value: object): boolean {
+    let isInstance = true;
+
+    return isInstance;
+}
 
 export function FooterFromJSON(json: any): Footer {
     return FooterFromJSONTyped(json, false);
@@ -42,7 +57,11 @@ export function FooterFromJSONTyped(json: any, ignoreDiscriminator: boolean): Fo
     if ((json === undefined) || (json === null)) {
         return json;
     }
-    return { ...BasicFooterFromJSONTyped(json, true), ...PaywallFooterFromJSONTyped(json, true) };
+    return {
+        
+        'button1': !exists(json, 'button1') ? undefined : ButtonFromJSON(json['button1']),
+        'button2': !exists(json, 'button2') ? undefined : ButtonFromJSON(json['button2']),
+    };
 }
 
 export function FooterToJSON(value?: Footer | null): any {
@@ -52,14 +71,10 @@ export function FooterToJSON(value?: Footer | null): any {
     if (value === null) {
         return null;
     }
-
-    if (instanceOfBasicFooter(value)) {
-        return BasicFooterToJSON(value as BasicFooter);
-    }
-    if (instanceOfPaywallFooter(value)) {
-        return PaywallFooterToJSON(value as PaywallFooter);
-    }
-
-    return {};
+    return {
+        
+        'button1': ButtonToJSON(value.button1),
+        'button2': ButtonToJSON(value.button2),
+    };
 }
 
