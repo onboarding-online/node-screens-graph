@@ -19,6 +19,12 @@ import {
     ImageFromJSONTyped,
     ImageToJSON,
 } from './Image';
+import type { Loader } from './Loader';
+import {
+    LoaderFromJSON,
+    LoaderFromJSONTyped,
+    LoaderToJSON,
+} from './Loader';
 import type { PaywallFooter } from './PaywallFooter';
 import {
     PaywallFooterFromJSON,
@@ -31,6 +37,12 @@ import {
     PaywallNavigationBarFromJSONTyped,
     PaywallNavigationBarToJSON,
 } from './PaywallNavigationBar';
+import type { PurchaseFlag } from './PurchaseFlag';
+import {
+    PurchaseFlagFromJSON,
+    PurchaseFlagFromJSONTyped,
+    PurchaseFlagToJSON,
+} from './PurchaseFlag';
 import type { RegularList } from './RegularList';
 import {
     RegularListFromJSON,
@@ -160,6 +172,18 @@ export interface ScreenBasicPaywall {
     list: RegularList;
     /**
      * 
+     * @type {Loader}
+     * @memberof ScreenBasicPaywall
+     */
+    loader?: Loader;
+    /**
+     * Purchase flags
+     * @type {Array<PurchaseFlag>}
+     * @memberof ScreenBasicPaywall
+     */
+    flags: Array<PurchaseFlag>;
+    /**
+     * 
      * @type {SubscriptionList}
      * @memberof ScreenBasicPaywall
      */
@@ -182,6 +206,7 @@ export function instanceOfScreenBasicPaywall(value: object): boolean {
     isInstance = isInstance && "title" in value;
     isInstance = isInstance && "subtitle" in value;
     isInstance = isInstance && "list" in value;
+    isInstance = isInstance && "flags" in value;
     isInstance = isInstance && "subscriptions" in value;
 
     return isInstance;
@@ -210,6 +235,8 @@ export function ScreenBasicPaywallFromJSONTyped(json: any, ignoreDiscriminator: 
         'image': !exists(json, 'image') ? undefined : ImageFromJSON(json['image']),
         'video': !exists(json, 'video') ? undefined : VideoFromJSON(json['video']),
         'list': RegularListFromJSON(json['list']),
+        'loader': !exists(json, 'loader') ? undefined : LoaderFromJSON(json['loader']),
+        'flags': ((json['flags'] as Array<any>).map(PurchaseFlagFromJSON)),
         'subscriptions': SubscriptionListFromJSON(json['subscriptions']),
     };
 }
@@ -236,6 +263,8 @@ export function ScreenBasicPaywallToJSON(value?: ScreenBasicPaywall | null): any
         'image': ImageToJSON(value.image),
         'video': VideoToJSON(value.video),
         'list': RegularListToJSON(value.list),
+        'loader': LoaderToJSON(value.loader),
+        'flags': ((value.flags as Array<any>).map(PurchaseFlagToJSON)),
         'subscriptions': SubscriptionListToJSON(value.subscriptions),
     };
 }

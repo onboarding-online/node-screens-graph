@@ -13,6 +13,12 @@
  */
 
 import { exists, mapValues } from '../runtime';
+import type { Badge } from './Badge';
+import {
+    BadgeFromJSON,
+    BadgeFromJSONTyped,
+    BadgeToJSON,
+} from './Badge';
 import type { Box } from './Box';
 import {
     BoxFromJSON,
@@ -70,6 +76,12 @@ export interface ItemTypeSubscription {
     description: Text;
     /**
      * 
+     * @type {Badge}
+     * @memberof ItemTypeSubscription
+     */
+    badge?: Badge;
+    /**
+     * 
      * @type {Box}
      * @memberof ItemTypeSubscription
      */
@@ -113,6 +125,7 @@ export function ItemTypeSubscriptionFromJSONTyped(json: any, ignoreDiscriminator
         'period': TextFromJSON(json['period']),
         'price': TextFromJSON(json['price']),
         'description': TextFromJSON(json['description']),
+        'badge': !exists(json, 'badge') ? undefined : BadgeFromJSON(json['badge']),
         'box': BoxFromJSON(json['box']),
         'weight': json['weight'],
     };
@@ -132,6 +145,7 @@ export function ItemTypeSubscriptionToJSON(value?: ItemTypeSubscription | null):
         'period': TextToJSON(value.period),
         'price': TextToJSON(value.price),
         'description': TextToJSON(value.description),
+        'badge': BadgeToJSON(value.badge),
         'box': BoxToJSON(value.box),
         'weight': value.weight,
     };
