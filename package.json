@@ -1,6 +1,6 @@
 {
   "name": "@onboarding-online/node-screens-graph",
-  "version": "1.0.0",
+  "version": "1.1.0-alpha.0",
   "description": "Models for onboarding online screens",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
