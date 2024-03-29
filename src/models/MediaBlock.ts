@@ -13,101 +13,95 @@
  */
 
 import { exists, mapValues } from '../runtime';
-import type { VideoScaleMode } from './VideoScaleMode';
+import type { MediaTopAlignment } from './MediaTopAlignment';
 import {
-    VideoScaleModeFromJSON,
-    VideoScaleModeFromJSONTyped,
-    VideoScaleModeToJSON,
-} from './VideoScaleMode';
+    MediaTopAlignmentFromJSON,
+    MediaTopAlignmentFromJSONTyped,
+    MediaTopAlignmentToJSON,
+} from './MediaTopAlignment';
 
 /**
- * Styles for video
+ * Styles for media
  * @export
- * @interface VideoBlock
+ * @interface MediaBlock
  */
-export interface VideoBlock {
+export interface MediaBlock {
     /**
      * 
-     * @type {VideoScaleMode}
-     * @memberof VideoBlock
+     * @type {MediaTopAlignment}
+     * @memberof MediaBlock
      */
-    scaleMode?: VideoScaleMode;
+    topAlignment?: MediaTopAlignment;
     /**
-     * width of video
+     * width of media
      * @type {number}
-     * @memberof VideoBlock
+     * @memberof MediaBlock
      */
     width?: number;
     /**
-     * height of video
+     * height of media
      * @type {number}
-     * @memberof VideoBlock
+     * @memberof MediaBlock
      */
     height?: number;
     /**
      * 
      * @type {number}
-     * @memberof VideoBlock
+     * @memberof MediaBlock
      */
     cornerRadiusLeftTop?: number;
     /**
      * 
      * @type {number}
-     * @memberof VideoBlock
+     * @memberof MediaBlock
      */
     cornerRadiusLeftBottom?: number;
     /**
      * 
      * @type {number}
-     * @memberof VideoBlock
+     * @memberof MediaBlock
      */
     cornerRadiusRightTop?: number;
     /**
      * 
      * @type {number}
-     * @memberof VideoBlock
+     * @memberof MediaBlock
      */
     cornerRadiusRightBottom?: number;
     /**
      * apply corner radius for all corners
      * @type {number}
-     * @memberof VideoBlock
+     * @memberof MediaBlock
      */
     mainCornerRadius?: number;
     /**
-     * repeat video after finish
-     * @type {boolean}
-     * @memberof VideoBlock
-     */
-    repeat?: boolean;
-    /**
      * Height in percentage
      * @type {number}
-     * @memberof VideoBlock
+     * @memberof MediaBlock
      */
     heightPercentage?: number;
 }
 
 /**
- * Check if a given object implements the VideoBlock interface.
+ * Check if a given object implements the MediaBlock interface.
  */
-export function instanceOfVideoBlock(value: object): boolean {
+export function instanceOfMediaBlock(value: object): boolean {
     let isInstance = true;
 
     return isInstance;
 }
 
-export function VideoBlockFromJSON(json: any): VideoBlock {
-    return VideoBlockFromJSONTyped(json, false);
+export function MediaBlockFromJSON(json: any): MediaBlock {
+    return MediaBlockFromJSONTyped(json, false);
 }
 
-export function VideoBlockFromJSONTyped(json: any, ignoreDiscriminator: boolean): VideoBlock {
+export function MediaBlockFromJSONTyped(json: any, ignoreDiscriminator: boolean): MediaBlock {
     if ((json === undefined) || (json === null)) {
         return json;
     }
     return {
         
-        'scaleMode': !exists(json, 'scaleMode') ? undefined : VideoScaleModeFromJSON(json['scaleMode']),
+        'topAlignment': !exists(json, 'topAlignment') ? undefined : MediaTopAlignmentFromJSON(json['topAlignment']),
         'width': !exists(json, 'width') ? undefined : json['width'],
         'height': !exists(json, 'height') ? undefined : json['height'],
         'cornerRadiusLeftTop': !exists(json, 'cornerRadiusLeftTop') ? undefined : json['cornerRadiusLeftTop'],
@@ -115,12 +109,11 @@ export function VideoBlockFromJSONTyped(json: any, ignoreDiscriminator: boolean)
         'cornerRadiusRightTop': !exists(json, 'cornerRadiusRightTop') ? undefined : json['cornerRadiusRightTop'],
         'cornerRadiusRightBottom': !exists(json, 'cornerRadiusRightBottom') ? undefined : json['cornerRadiusRightBottom'],
         'mainCornerRadius': !exists(json, 'mainCornerRadius') ? undefined : json['mainCornerRadius'],
-        'repeat': !exists(json, 'repeat') ? undefined : json['repeat'],
         'heightPercentage': !exists(json, 'heightPercentage') ? undefined : json['heightPercentage'],
     };
 }
 
-export function VideoBlockToJSON(value?: VideoBlock | null): any {
+export function MediaBlockToJSON(value?: MediaBlock | null): any {
     if (value === undefined) {
         return undefined;
     }
@@ -129,7 +122,7 @@ export function VideoBlockToJSON(value?: VideoBlock | null): any {
     }
     return {
         
-        'scaleMode': VideoScaleModeToJSON(value.scaleMode),
+        'topAlignment': MediaTopAlignmentToJSON(value.topAlignment),
         'width': value.width,
         'height': value.height,
         'cornerRadiusLeftTop': value.cornerRadiusLeftTop,
@@ -137,7 +130,6 @@ export function VideoBlockToJSON(value?: VideoBlock | null): any {
         'cornerRadiusRightTop': value.cornerRadiusRightTop,
         'cornerRadiusRightBottom': value.cornerRadiusRightBottom,
         'mainCornerRadius': value.mainCornerRadius,
-        'repeat': value.repeat,
         'heightPercentage': value.heightPercentage,
     };
 }

@@ -13,6 +13,12 @@
  */
 
 import { exists, mapValues } from '../runtime';
+import type { Media } from './Media';
+import {
+    MediaFromJSON,
+    MediaFromJSONTyped,
+    MediaToJSON,
+} from './Media';
 import type { SingleSelectionList } from './SingleSelectionList';
 import {
     SingleSelectionListFromJSON,
@@ -38,6 +44,12 @@ export interface ScreenTableSingleSelectionAllOf {
      * @memberof ScreenTableSingleSelectionAllOf
      */
     singleSelectionDescription: string;
+    /**
+     * 
+     * @type {Media}
+     * @memberof ScreenTableSingleSelectionAllOf
+     */
+    media?: Media;
     /**
      * 
      * @type {Text}
@@ -82,6 +94,7 @@ export function ScreenTableSingleSelectionAllOfFromJSONTyped(json: any, ignoreDi
     return {
         
         'singleSelectionDescription': json['singleSelectionDescription'],
+        'media': !exists(json, 'media') ? undefined : MediaFromJSON(json['media']),
         'title': TextFromJSON(json['title']),
         'subtitle': TextFromJSON(json['subtitle']),
         'list': SingleSelectionListFromJSON(json['list']),
@@ -98,6 +111,7 @@ export function ScreenTableSingleSelectionAllOfToJSON(value?: ScreenTableSingleS
     return {
         
         'singleSelectionDescription': value.singleSelectionDescription,
+        'media': MediaToJSON(value.media),
         'title': TextToJSON(value.title),
         'subtitle': TextToJSON(value.subtitle),
         'list': SingleSelectionListToJSON(value.list),

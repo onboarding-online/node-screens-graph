@@ -122,6 +122,12 @@ export interface ScreenProgressBarTitle {
      * @memberof ScreenProgressBarTitle
      */
     title: Text;
+    /**
+     * 
+     * @type {Text}
+     * @memberof ScreenProgressBarTitle
+     */
+    subtitle?: Text;
 }
 
 /**
@@ -163,6 +169,7 @@ export function ScreenProgressBarTitleFromJSONTyped(json: any, ignoreDiscriminat
         'progressBarTitleDescription': json['progressBarTitleDescription'],
         'progressBar': ProgressBarFromJSON(json['progressBar']),
         'title': TextFromJSON(json['title']),
+        'subtitle': !exists(json, 'subtitle') ? undefined : TextFromJSON(json['subtitle']),
     };
 }
 
@@ -185,6 +192,7 @@ export function ScreenProgressBarTitleToJSON(value?: ScreenProgressBarTitle | nu
         'progressBarTitleDescription': value.progressBarTitleDescription,
         'progressBar': ProgressBarToJSON(value.progressBar),
         'title': TextToJSON(value.title),
+        'subtitle': TextToJSON(value.subtitle),
     };
 }
 

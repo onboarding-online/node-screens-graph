@@ -13,6 +13,12 @@
  */
 
 import { exists, mapValues } from '../runtime';
+import type { ImageKind } from './ImageKind';
+import {
+    ImageKindFromJSON,
+    ImageKindFromJSONTyped,
+    ImageKindToJSON,
+} from './ImageKind';
 import type { ImageScaleMode } from './ImageScaleMode';
 import {
     ImageScaleModeFromJSON,
@@ -26,6 +32,12 @@ import {
  * @interface ImageBlock
  */
 export interface ImageBlock {
+    /**
+     * 
+     * @type {ImageKind}
+     * @memberof ImageBlock
+     */
+    imageKind?: ImageKind;
     /**
      * 
      * @type {ImageScaleMode}
@@ -74,6 +86,12 @@ export interface ImageBlock {
      * @memberof ImageBlock
      */
     mainCornerRadius?: number;
+    /**
+     * Height in percentage
+     * @type {number}
+     * @memberof ImageBlock
+     */
+    heightPercentage?: number;
 }
 
 /**
@@ -95,6 +113,7 @@ export function ImageBlockFromJSONTyped(json: any, ignoreDiscriminator: boolean)
     }
     return {
         
+        'imageKind': !exists(json, 'imageKind') ? undefined : ImageKindFromJSON(json['imageKind']),
         'scaleMode': !exists(json, 'scaleMode') ? undefined : ImageScaleModeFromJSON(json['scaleMode']),
         'width': !exists(json, 'width') ? undefined : json['width'],
         'height': !exists(json, 'height') ? undefined : json['height'],
@@ -103,6 +122,7 @@ export function ImageBlockFromJSONTyped(json: any, ignoreDiscriminator: boolean)
         'cornerRadiusRightTop': !exists(json, 'cornerRadiusRightTop') ? undefined : json['cornerRadiusRightTop'],
         'cornerRadiusRightBottom': !exists(json, 'cornerRadiusRightBottom') ? undefined : json['cornerRadiusRightBottom'],
         'mainCornerRadius': !exists(json, 'mainCornerRadius') ? undefined : json['mainCornerRadius'],
+        'heightPercentage': !exists(json, 'heightPercentage') ? undefined : json['heightPercentage'],
     };
 }
 
@@ -115,6 +135,7 @@ export function ImageBlockToJSON(value?: ImageBlock | null): any {
     }
     return {
         
+        'imageKind': ImageKindToJSON(value.imageKind),
         'scaleMode': ImageScaleModeToJSON(value.scaleMode),
         'width': value.width,
         'height': value.height,
@@ -123,6 +144,7 @@ export function ImageBlockToJSON(value?: ImageBlock | null): any {
         'cornerRadiusRightTop': value.cornerRadiusRightTop,
         'cornerRadiusRightBottom': value.cornerRadiusRightBottom,
         'mainCornerRadius': value.mainCornerRadius,
+        'heightPercentage': value.heightPercentage,
     };
 }
 

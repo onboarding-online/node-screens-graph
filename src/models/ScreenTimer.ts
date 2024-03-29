@@ -19,6 +19,12 @@ import {
     ActionFromJSONTyped,
     ActionToJSON,
 } from './Action';
+import type { TimerUnit } from './TimerUnit';
+import {
+    TimerUnitFromJSON,
+    TimerUnitFromJSONTyped,
+    TimerUnitToJSON,
+} from './TimerUnit';
 
 /**
  * Timer to show the screen
@@ -38,6 +44,12 @@ export interface ScreenTimer {
      * @memberof ScreenTimer
      */
     action: Action;
+    /**
+     * 
+     * @type {TimerUnit}
+     * @memberof ScreenTimer
+     */
+    unit?: TimerUnit;
 }
 
 /**
@@ -63,6 +75,7 @@ export function ScreenTimerFromJSONTyped(json: any, ignoreDiscriminator: boolean
         
         'duration': json['duration'],
         'action': ActionFromJSON(json['action']),
+        'unit': !exists(json, 'unit') ? undefined : TimerUnitFromJSON(json['unit']),
     };
 }
 
@@ -77,6 +90,7 @@ export function ScreenTimerToJSON(value?: ScreenTimer | null): any {
         
         'duration': value.duration,
         'action': ActionToJSON(value.action),
+        'unit': TimerUnitToJSON(value.unit),
     };
 }
 

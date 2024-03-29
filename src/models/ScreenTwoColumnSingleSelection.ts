@@ -25,6 +25,12 @@ import {
     FooterFromJSONTyped,
     FooterToJSON,
 } from './Footer';
+import type { Media } from './Media';
+import {
+    MediaFromJSON,
+    MediaFromJSONTyped,
+    MediaToJSON,
+} from './Media';
 import type { NavigationBar } from './NavigationBar';
 import {
     NavigationBarFromJSON,
@@ -112,6 +118,12 @@ export interface ScreenTwoColumnSingleSelection {
     twoColumnSingleSelectionDescription: string;
     /**
      * 
+     * @type {Media}
+     * @memberof ScreenTwoColumnSingleSelection
+     */
+    media?: Media;
+    /**
+     * 
      * @type {Text}
      * @memberof ScreenTwoColumnSingleSelection
      */
@@ -168,6 +180,7 @@ export function ScreenTwoColumnSingleSelectionFromJSONTyped(json: any, ignoreDis
         'animationEnabled': json['animationEnabled'],
         'useLocalAssetsIfAvailable': json['useLocalAssetsIfAvailable'],
         'twoColumnSingleSelectionDescription': json['twoColumnSingleSelectionDescription'],
+        'media': !exists(json, 'media') ? undefined : MediaFromJSON(json['media']),
         'title': TextFromJSON(json['title']),
         'subtitle': TextFromJSON(json['subtitle']),
         'list': TwoColumnSingleSelectionListFromJSON(json['list']),
@@ -191,6 +204,7 @@ export function ScreenTwoColumnSingleSelectionToJSON(value?: ScreenTwoColumnSing
         'animationEnabled': value.animationEnabled,
         'useLocalAssetsIfAvailable': value.useLocalAssetsIfAvailable,
         'twoColumnSingleSelectionDescription': value.twoColumnSingleSelectionDescription,
+        'media': MediaToJSON(value.media),
         'title': TextToJSON(value.title),
         'subtitle': TextToJSON(value.subtitle),
         'list': TwoColumnSingleSelectionListToJSON(value.list),

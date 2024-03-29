@@ -19,7 +19,13 @@
  */
 export const ProgressBarKind = {
     Circle: 'circle',
-    Line: 'line'
+    Line: 'line',
+    MultipleLine: 'multipleLine',
+    ProgressBarKind1: 'ProgressBarKind1',
+    ProgressBarKind2: 'ProgressBarKind2',
+    ProgressBarKind3: 'ProgressBarKind3',
+    ProgressBarKind4: 'ProgressBarKind4',
+    ProgressBarKind5: 'ProgressBarKind5'
 } as const;
 export type ProgressBarKind = typeof ProgressBarKind[keyof typeof ProgressBarKind];
 

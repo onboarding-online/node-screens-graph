@@ -13,6 +13,12 @@
  */
 
 import { exists, mapValues } from '../runtime';
+import type { Image } from './Image';
+import {
+    ImageFromJSON,
+    ImageFromJSONTyped,
+    ImageToJSON,
+} from './Image';
 import type { Text } from './Text';
 import {
     TextFromJSON,
@@ -32,6 +38,24 @@ export interface ProgressBarItemContent {
      * @memberof ProgressBarItemContent
      */
     title: Text;
+    /**
+     * 
+     * @type {Text}
+     * @memberof ProgressBarItemContent
+     */
+    subtitle?: Text;
+    /**
+     * 
+     * @type {Text}
+     * @memberof ProgressBarItemContent
+     */
+    description?: Text;
+    /**
+     * 
+     * @type {Image}
+     * @memberof ProgressBarItemContent
+     */
+    image?: Image;
 }
 
 /**
@@ -55,6 +79,9 @@ export function ProgressBarItemContentFromJSONTyped(json: any, ignoreDiscriminat
     return {
         
         'title': TextFromJSON(json['title']),
+        'subtitle': !exists(json, 'subtitle') ? undefined : TextFromJSON(json['subtitle']),
+        'description': !exists(json, 'description') ? undefined : TextFromJSON(json['description']),
+        'image': !exists(json, 'image') ? undefined : ImageFromJSON(json['image']),
     };
 }
 
@@ -68,6 +95,9 @@ export function ProgressBarItemContentToJSON(value?: ProgressBarItemContent | nu
     return {
         
         'title': TextToJSON(value.title),
+        'subtitle': TextToJSON(value.subtitle),
+        'description': TextToJSON(value.description),
+        'image': ImageToJSON(value.image),
     };
 }
 

@@ -24,7 +24,12 @@ export const SubscriptionListItemType = {
     SubscriptionListItemType2: 'SubscriptionListItemType2',
     SubscriptionListItemType3: 'SubscriptionListItemType3',
     SubscriptionListItemType4: 'SubscriptionListItemType4',
-    SubscriptionListItemType5: 'SubscriptionListItemType5'
+    SubscriptionListItemType5: 'SubscriptionListItemType5',
+    SubscriptionListItemType6: 'SubscriptionListItemType6',
+    SubscriptionListItemType7: 'SubscriptionListItemType7',
+    SubscriptionListItemType8: 'SubscriptionListItemType8',
+    SubscriptionListItemType9: 'SubscriptionListItemType9',
+    SubscriptionListItemType10: 'SubscriptionListItemType10'
 } as const;
 export type SubscriptionListItemType = typeof SubscriptionListItemType[keyof typeof SubscriptionListItemType];
 

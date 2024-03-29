@@ -13,6 +13,12 @@
  */
 
 import { exists, mapValues } from '../runtime';
+import type { Media } from './Media';
+import {
+    MediaFromJSON,
+    MediaFromJSONTyped,
+    MediaToJSON,
+} from './Media';
 import type { MultipleSelectionList } from './MultipleSelectionList';
 import {
     MultipleSelectionListFromJSON,
@@ -38,6 +44,12 @@ export interface ScreenTableMultipleSelectionAllOf {
      * @memberof ScreenTableMultipleSelectionAllOf
      */
     multipleSelectionDescription: string;
+    /**
+     * 
+     * @type {Media}
+     * @memberof ScreenTableMultipleSelectionAllOf
+     */
+    media?: Media;
     /**
      * 
      * @type {Text}
@@ -82,6 +94,7 @@ export function ScreenTableMultipleSelectionAllOfFromJSONTyped(json: any, ignore
     return {
         
         'multipleSelectionDescription': json['multipleSelectionDescription'],
+        'media': !exists(json, 'media') ? undefined : MediaFromJSON(json['media']),
         'title': TextFromJSON(json['title']),
         'subtitle': TextFromJSON(json['subtitle']),
         'list': MultipleSelectionListFromJSON(json['list']),
@@ -98,6 +111,7 @@ export function ScreenTableMultipleSelectionAllOfToJSON(value?: ScreenTableMulti
     return {
         
         'multipleSelectionDescription': value.multipleSelectionDescription,
+        'media': MediaToJSON(value.media),
         'title': TextToJSON(value.title),
         'subtitle': TextToJSON(value.subtitle),
         'list': MultipleSelectionListToJSON(value.list),

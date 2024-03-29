@@ -13,6 +13,13 @@
  */
 
 import { exists, mapValues } from '../runtime';
+import type { VerticalAlignment } from './VerticalAlignment';
+import {
+    VerticalAlignmentFromJSON,
+    VerticalAlignmentFromJSONTyped,
+    VerticalAlignmentToJSON,
+} from './VerticalAlignment';
+
 /**
  * Styles for progress bar
  * @export
@@ -20,17 +27,29 @@ import { exists, mapValues } from '../runtime';
  */
 export interface ProgressBarBlock {
     /**
+     * width of progress bar
+     * @type {number}
+     * @memberof ProgressBarBlock
+     */
+    width?: number;
+    /**
+     * height of progress bar
+     * @type {number}
+     * @memberof ProgressBarBlock
+     */
+    height?: number;
+    /**
+     * Height in percentage
+     * @type {number}
+     * @memberof ProgressBarBlock
+     */
+    heightPercentage?: number;
+    /**
      * Color for progress bar
      * @type {string}
      * @memberof ProgressBarBlock
      */
     color?: string;
-    /**
-     * Thickness for progress bar
-     * @type {number}
-     * @memberof ProgressBarBlock
-     */
-    thickness?: number;
     /**
      * Track color
      * @type {string}
@@ -38,11 +57,29 @@ export interface ProgressBarBlock {
      */
     trackColor?: string;
     /**
+     * Fill color
+     * @type {string}
+     * @memberof ProgressBarBlock
+     */
+    fillColor?: string;
+    /**
+     * Thickness for progress bar
+     * @type {number}
+     * @memberof ProgressBarBlock
+     */
+    thickness?: number;
+    /**
      * Track thickness
      * @type {number}
      * @memberof ProgressBarBlock
      */
     trackThickness?: number;
+    /**
+     * 
+     * @type {VerticalAlignment}
+     * @memberof ProgressBarBlock
+     */
+    verticalAlignment?: VerticalAlignment;
 }
 
 /**
@@ -64,10 +101,15 @@ export function ProgressBarBlockFromJSONTyped(json: any, ignoreDiscriminator: bo
     }
     return {
         
+        'width': !exists(json, 'width') ? undefined : json['width'],
+        'height': !exists(json, 'height') ? undefined : json['height'],
+        'heightPercentage': !exists(json, 'heightPercentage') ? undefined : json['heightPercentage'],
         'color': !exists(json, 'color') ? undefined : json['color'],
-        'thickness': !exists(json, 'thickness') ? undefined : json['thickness'],
         'trackColor': !exists(json, 'trackColor') ? undefined : json['trackColor'],
+        'fillColor': !exists(json, 'fillColor') ? undefined : json['fillColor'],
+        'thickness': !exists(json, 'thickness') ? undefined : json['thickness'],
         'trackThickness': !exists(json, 'trackThickness') ? undefined : json['trackThickness'],
+        'verticalAlignment': !exists(json, 'verticalAlignment') ? undefined : VerticalAlignmentFromJSON(json['verticalAlignment']),
     };
 }
 
@@ -80,10 +122,15 @@ export function ProgressBarBlockToJSON(value?: ProgressBarBlock | null): any {
     }
     return {
         
+        'width': value.width,
+        'height': value.height,
+        'heightPercentage': value.heightPercentage,
         'color': value.color,
-        'thickness': value.thickness,
         'trackColor': value.trackColor,
+        'fillColor': value.fillColor,
+        'thickness': value.thickness,
         'trackThickness': value.trackThickness,
+        'verticalAlignment': VerticalAlignmentToJSON(value.verticalAlignment),
     };
 }
 

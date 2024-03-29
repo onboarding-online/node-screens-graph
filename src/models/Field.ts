@@ -31,6 +31,12 @@ import {
     FieldBlockFromJSONTyped,
     FieldBlockToJSON,
 } from './FieldBlock';
+import type { FieldSubtype } from './FieldSubtype';
+import {
+    FieldSubtypeFromJSON,
+    FieldSubtypeFromJSONTyped,
+    FieldSubtypeToJSON,
+} from './FieldSubtype';
 import type { FieldType } from './FieldType';
 import {
     FieldTypeFromJSON,
@@ -56,6 +62,24 @@ export interface Field {
      * @memberof Field
      */
     type: FieldType;
+    /**
+     * 
+     * @type {FieldSubtype}
+     * @memberof Field
+     */
+    subtype?: FieldSubtype;
+    /**
+     * 
+     * @type {string}
+     * @memberof Field
+     */
+    validationRegex?: string;
+    /**
+     * 
+     * @type {BaseText}
+     * @memberof Field
+     */
+    errorMessage?: BaseText;
     /**
      * 
      * @type {BaseText}
@@ -102,6 +126,9 @@ export function FieldFromJSONTyped(json: any, ignoreDiscriminator: boolean): Fie
         
         'box': BoxFromJSON(json['box']),
         'type': FieldTypeFromJSON(json['type']),
+        'subtype': !exists(json, 'subtype') ? undefined : FieldSubtypeFromJSON(json['subtype']),
+        'validationRegex': !exists(json, 'validationRegex') ? undefined : json['validationRegex'],
+        'errorMessage': !exists(json, 'errorMessage') ? undefined : BaseTextFromJSON(json['errorMessage']),
         'placeholder': BaseTextFromJSON(json['placeholder']),
         'value': json['value'],
         'styles': FieldBlockFromJSON(json['styles']),
@@ -119,6 +146,9 @@ export function FieldToJSON(value?: Field | null): any {
         
         'box': BoxToJSON(value.box),
         'type': FieldTypeToJSON(value.type),
+        'subtype': FieldSubtypeToJSON(value.subtype),
+        'validationRegex': value.validationRegex,
+        'errorMessage': BaseTextToJSON(value.errorMessage),
         'placeholder': BaseTextToJSON(value.placeholder),
         'value': value.value,
         'styles': FieldBlockToJSON(value.styles),

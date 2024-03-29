@@ -13,6 +13,12 @@
  */
 
 import { exists, mapValues } from '../runtime';
+import type { Media } from './Media';
+import {
+    MediaFromJSON,
+    MediaFromJSONTyped,
+    MediaToJSON,
+} from './Media';
 import type { Text } from './Text';
 import {
     TextFromJSON,
@@ -38,6 +44,12 @@ export interface ScreenTwoColumnMultipleSelectionAllOf {
      * @memberof ScreenTwoColumnMultipleSelectionAllOf
      */
     twoColumnMultipleSelectionDescription: string;
+    /**
+     * 
+     * @type {Media}
+     * @memberof ScreenTwoColumnMultipleSelectionAllOf
+     */
+    media?: Media;
     /**
      * 
      * @type {Text}
@@ -82,6 +94,7 @@ export function ScreenTwoColumnMultipleSelectionAllOfFromJSONTyped(json: any, ig
     return {
         
         'twoColumnMultipleSelectionDescription': json['twoColumnMultipleSelectionDescription'],
+        'media': !exists(json, 'media') ? undefined : MediaFromJSON(json['media']),
         'title': TextFromJSON(json['title']),
         'subtitle': TextFromJSON(json['subtitle']),
         'list': TwoColumnMultipleSelectionListFromJSON(json['list']),
@@ -98,6 +111,7 @@ export function ScreenTwoColumnMultipleSelectionAllOfToJSON(value?: ScreenTwoCol
     return {
         
         'twoColumnMultipleSelectionDescription': value.twoColumnMultipleSelectionDescription,
+        'media': MediaToJSON(value.media),
         'title': TextToJSON(value.title),
         'subtitle': TextToJSON(value.subtitle),
         'list': TwoColumnMultipleSelectionListToJSON(value.list),

@@ -25,6 +25,12 @@ import {
     FooterFromJSONTyped,
     FooterToJSON,
 } from './Footer';
+import type { Media } from './Media';
+import {
+    MediaFromJSON,
+    MediaFromJSONTyped,
+    MediaToJSON,
+} from './Media';
 import type { NavigationBar } from './NavigationBar';
 import {
     NavigationBarFromJSON,
@@ -112,6 +118,12 @@ export interface ScreenTableSingleSelection {
     singleSelectionDescription: string;
     /**
      * 
+     * @type {Media}
+     * @memberof ScreenTableSingleSelection
+     */
+    media?: Media;
+    /**
+     * 
      * @type {Text}
      * @memberof ScreenTableSingleSelection
      */
@@ -168,6 +180,7 @@ export function ScreenTableSingleSelectionFromJSONTyped(json: any, ignoreDiscrim
         'animationEnabled': json['animationEnabled'],
         'useLocalAssetsIfAvailable': json['useLocalAssetsIfAvailable'],
         'singleSelectionDescription': json['singleSelectionDescription'],
+        'media': !exists(json, 'media') ? undefined : MediaFromJSON(json['media']),
         'title': TextFromJSON(json['title']),
         'subtitle': TextFromJSON(json['subtitle']),
         'list': SingleSelectionListFromJSON(json['list']),
@@ -191,6 +204,7 @@ export function ScreenTableSingleSelectionToJSON(value?: ScreenTableSingleSelect
         'animationEnabled': value.animationEnabled,
         'useLocalAssetsIfAvailable': value.useLocalAssetsIfAvailable,
         'singleSelectionDescription': value.singleSelectionDescription,
+        'media': MediaToJSON(value.media),
         'title': TextToJSON(value.title),
         'subtitle': TextToJSON(value.subtitle),
         'list': SingleSelectionListToJSON(value.list),

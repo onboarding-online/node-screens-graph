@@ -43,6 +43,12 @@ import {
     SubscriptionListItemTypeFromJSONTyped,
     SubscriptionListItemTypeToJSON,
 } from './SubscriptionListItemType';
+import type { SubscriptionViewKind } from './SubscriptionViewKind';
+import {
+    SubscriptionViewKindFromJSON,
+    SubscriptionViewKindFromJSONTyped,
+    SubscriptionViewKindToJSON,
+} from './SubscriptionViewKind';
 
 /**
  * Subscriptions list element
@@ -50,6 +56,12 @@ import {
  * @interface SubscriptionList
  */
 export interface SubscriptionList {
+    /**
+     * 
+     * @type {SubscriptionViewKind}
+     * @memberof SubscriptionList
+     */
+    subscriptionViewKind?: SubscriptionViewKind;
     /**
      * 
      * @type {SubscriptionListItemType}
@@ -106,6 +118,7 @@ export function SubscriptionListFromJSONTyped(json: any, ignoreDiscriminator: bo
     }
     return {
         
+        'subscriptionViewKind': !exists(json, 'subscriptionViewKind') ? undefined : SubscriptionViewKindFromJSON(json['subscriptionViewKind']),
         'itemType': SubscriptionListItemTypeFromJSON(json['itemType']),
         'items': ((json['items'] as Array<any>).map(ItemTypeSubscriptionFromJSON)),
         'styles': SubscriptionListBlockFromJSON(json['styles']),
@@ -123,6 +136,7 @@ export function SubscriptionListToJSON(value?: SubscriptionList | null): any {
     }
     return {
         
+        'subscriptionViewKind': SubscriptionViewKindToJSON(value.subscriptionViewKind),
         'itemType': SubscriptionListItemTypeToJSON(value.itemType),
         'items': ((value.items as Array<any>).map(ItemTypeSubscriptionToJSON)),
         'styles': SubscriptionListBlockToJSON(value.styles),

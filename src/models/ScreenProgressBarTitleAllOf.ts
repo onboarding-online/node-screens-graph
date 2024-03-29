@@ -50,6 +50,12 @@ export interface ScreenProgressBarTitleAllOf {
      * @memberof ScreenProgressBarTitleAllOf
      */
     title: Text;
+    /**
+     * 
+     * @type {Text}
+     * @memberof ScreenProgressBarTitleAllOf
+     */
+    subtitle?: Text;
 }
 
 /**
@@ -77,6 +83,7 @@ export function ScreenProgressBarTitleAllOfFromJSONTyped(json: any, ignoreDiscri
         'progressBarTitleDescription': json['progressBarTitleDescription'],
         'progressBar': ProgressBarFromJSON(json['progressBar']),
         'title': TextFromJSON(json['title']),
+        'subtitle': !exists(json, 'subtitle') ? undefined : TextFromJSON(json['subtitle']),
     };
 }
 
@@ -92,6 +99,7 @@ export function ScreenProgressBarTitleAllOfToJSON(value?: ScreenProgressBarTitle
         'progressBarTitleDescription': value.progressBarTitleDescription,
         'progressBar': ProgressBarToJSON(value.progressBar),
         'title': TextToJSON(value.title),
+        'subtitle': TextToJSON(value.subtitle),
     };
 }
 

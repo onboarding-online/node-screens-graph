@@ -69,6 +69,12 @@ export interface LabelBlock {
      */
     color?: string;
     /**
+     * Alternative color for text
+     * @type {string}
+     * @memberof LabelBlock
+     */
+    alternativeColor?: string;
+    /**
      * Background color for text block
      * @type {string}
      * @memberof LabelBlock
@@ -125,6 +131,7 @@ export function LabelBlockFromJSONTyped(json: any, ignoreDiscriminator: boolean)
         'fontSize': !exists(json, 'fontSize') ? undefined : json['fontSize'],
         'fontWeight': !exists(json, 'fontWeight') ? undefined : json['fontWeight'],
         'color': !exists(json, 'color') ? undefined : json['color'],
+        'alternativeColor': !exists(json, 'alternativeColor') ? undefined : json['alternativeColor'],
         'backgroundColor': !exists(json, 'backgroundColor') ? undefined : json['backgroundColor'],
         'paddingLeft': !exists(json, 'paddingLeft') ? undefined : json['paddingLeft'],
         'paddingRight': !exists(json, 'paddingRight') ? undefined : json['paddingRight'],
@@ -148,6 +155,7 @@ export function LabelBlockToJSON(value?: LabelBlock | null): any {
         'fontSize': value.fontSize,
         'fontWeight': value.fontWeight,
         'color': value.color,
+        'alternativeColor': value.alternativeColor,
         'backgroundColor': value.backgroundColor,
         'paddingLeft': value.paddingLeft,
         'paddingRight': value.paddingRight,

@@ -25,18 +25,18 @@ import {
     DividerFromJSONTyped,
     DividerToJSON,
 } from './Divider';
-import type { Image } from './Image';
-import {
-    ImageFromJSON,
-    ImageFromJSONTyped,
-    ImageToJSON,
-} from './Image';
 import type { Loader } from './Loader';
 import {
     LoaderFromJSON,
     LoaderFromJSONTyped,
     LoaderToJSON,
 } from './Loader';
+import type { Media } from './Media';
+import {
+    MediaFromJSON,
+    MediaFromJSONTyped,
+    MediaToJSON,
+} from './Media';
 import type { PaywallFooter } from './PaywallFooter';
 import {
     PaywallFooterFromJSON,
@@ -91,12 +91,6 @@ import {
     TextFromJSONTyped,
     TextToJSON,
 } from './Text';
-import type { Video } from './Video';
-import {
-    VideoFromJSON,
-    VideoFromJSONTyped,
-    VideoToJSON,
-} from './Video';
 
 /**
  * 
@@ -172,16 +166,10 @@ export interface ScreenBasicPaywall {
     divider?: Divider;
     /**
      * 
-     * @type {Image}
+     * @type {Media}
      * @memberof ScreenBasicPaywall
      */
-    image?: Image;
-    /**
-     * 
-     * @type {Video}
-     * @memberof ScreenBasicPaywall
-     */
-    video?: Video;
+    media?: Media;
     /**
      * 
      * @type {RegularList}
@@ -258,8 +246,7 @@ export function ScreenBasicPaywallFromJSONTyped(json: any, ignoreDiscriminator: 
         'title': TextFromJSON(json['title']),
         'subtitle': TextFromJSON(json['subtitle']),
         'divider': !exists(json, 'divider') ? undefined : DividerFromJSON(json['divider']),
-        'image': !exists(json, 'image') ? undefined : ImageFromJSON(json['image']),
-        'video': !exists(json, 'video') ? undefined : VideoFromJSON(json['video']),
+        'media': !exists(json, 'media') ? undefined : MediaFromJSON(json['media']),
         'list': RegularListFromJSON(json['list']),
         'loader': !exists(json, 'loader') ? undefined : LoaderFromJSON(json['loader']),
         'flags': ((json['flags'] as Array<any>).map(PurchaseFlagFromJSON)),
@@ -288,8 +275,7 @@ export function ScreenBasicPaywallToJSON(value?: ScreenBasicPaywall | null): any
         'title': TextToJSON(value.title),
         'subtitle': TextToJSON(value.subtitle),
         'divider': DividerToJSON(value.divider),
-        'image': ImageToJSON(value.image),
-        'video': VideoToJSON(value.video),
+        'media': MediaToJSON(value.media),
         'list': RegularListToJSON(value.list),
         'loader': LoaderToJSON(value.loader),
         'flags': ((value.flags as Array<any>).map(PurchaseFlagToJSON)),
