@@ -45,6 +45,12 @@ export interface VideoBlock {
      */
     height?: number;
     /**
+     * Height in percentage
+     * @type {number}
+     * @memberof VideoBlock
+     */
+    heightPercentage?: number;
+    /**
      * 
      * @type {number}
      * @memberof VideoBlock
@@ -80,12 +86,6 @@ export interface VideoBlock {
      * @memberof VideoBlock
      */
     repeat?: boolean;
-    /**
-     * Height in percentage
-     * @type {number}
-     * @memberof VideoBlock
-     */
-    heightPercentage?: number;
 }
 
 /**
@@ -110,13 +110,13 @@ export function VideoBlockFromJSONTyped(json: any, ignoreDiscriminator: boolean)
         'scaleMode': !exists(json, 'scaleMode') ? undefined : VideoScaleModeFromJSON(json['scaleMode']),
         'width': !exists(json, 'width') ? undefined : json['width'],
         'height': !exists(json, 'height') ? undefined : json['height'],
+        'heightPercentage': !exists(json, 'heightPercentage') ? undefined : json['heightPercentage'],
         'cornerRadiusLeftTop': !exists(json, 'cornerRadiusLeftTop') ? undefined : json['cornerRadiusLeftTop'],
         'cornerRadiusLeftBottom': !exists(json, 'cornerRadiusLeftBottom') ? undefined : json['cornerRadiusLeftBottom'],
         'cornerRadiusRightTop': !exists(json, 'cornerRadiusRightTop') ? undefined : json['cornerRadiusRightTop'],
         'cornerRadiusRightBottom': !exists(json, 'cornerRadiusRightBottom') ? undefined : json['cornerRadiusRightBottom'],
         'mainCornerRadius': !exists(json, 'mainCornerRadius') ? undefined : json['mainCornerRadius'],
         'repeat': !exists(json, 'repeat') ? undefined : json['repeat'],
-        'heightPercentage': !exists(json, 'heightPercentage') ? undefined : json['heightPercentage'],
     };
 }
 
@@ -132,13 +132,13 @@ export function VideoBlockToJSON(value?: VideoBlock | null): any {
         'scaleMode': VideoScaleModeToJSON(value.scaleMode),
         'width': value.width,
         'height': value.height,
+        'heightPercentage': value.heightPercentage,
         'cornerRadiusLeftTop': value.cornerRadiusLeftTop,
         'cornerRadiusLeftBottom': value.cornerRadiusLeftBottom,
         'cornerRadiusRightTop': value.cornerRadiusRightTop,
         'cornerRadiusRightBottom': value.cornerRadiusRightBottom,
         'mainCornerRadius': value.mainCornerRadius,
         'repeat': value.repeat,
-        'heightPercentage': value.heightPercentage,
     };
 }
 

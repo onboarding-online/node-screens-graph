@@ -91,6 +91,7 @@ export * from './Media';
 export * from './MediaBlock';
 export * from './MediaContent';
 export * from './MediaKind';
+export * from './MediaScaleMode';
 export * from './MediaTopAlignment';
 export * from './MultipleSelectionList';
 export * from './MultipleSelectionListItemType';

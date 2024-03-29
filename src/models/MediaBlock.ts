@@ -13,6 +13,12 @@
  */
 
 import { exists, mapValues } from '../runtime';
+import type { MediaScaleMode } from './MediaScaleMode';
+import {
+    MediaScaleModeFromJSON,
+    MediaScaleModeFromJSONTyped,
+    MediaScaleModeToJSON,
+} from './MediaScaleMode';
 import type { MediaTopAlignment } from './MediaTopAlignment';
 import {
     MediaTopAlignmentFromJSON,
@@ -26,6 +32,12 @@ import {
  * @interface MediaBlock
  */
 export interface MediaBlock {
+    /**
+     * 
+     * @type {MediaScaleMode}
+     * @memberof MediaBlock
+     */
+    scaleMode?: MediaScaleMode;
     /**
      * 
      * @type {MediaTopAlignment}
@@ -44,6 +56,12 @@ export interface MediaBlock {
      * @memberof MediaBlock
      */
     height?: number;
+    /**
+     * Height in percentage
+     * @type {number}
+     * @memberof MediaBlock
+     */
+    heightPercentage?: number;
     /**
      * 
      * @type {number}
@@ -75,11 +93,11 @@ export interface MediaBlock {
      */
     mainCornerRadius?: number;
     /**
-     * Height in percentage
-     * @type {number}
+     * repeat video after finish
+     * @type {boolean}
      * @memberof MediaBlock
      */
-    heightPercentage?: number;
+    repeat?: boolean;
 }
 
 /**
@@ -101,15 +119,17 @@ export function MediaBlockFromJSONTyped(json: any, ignoreDiscriminator: boolean)
     }
     return {
         
+        'scaleMode': !exists(json, 'scaleMode') ? undefined : MediaScaleModeFromJSON(json['scaleMode']),
         'topAlignment': !exists(json, 'topAlignment') ? undefined : MediaTopAlignmentFromJSON(json['topAlignment']),
         'width': !exists(json, 'width') ? undefined : json['width'],
         'height': !exists(json, 'height') ? undefined : json['height'],
+        'heightPercentage': !exists(json, 'heightPercentage') ? undefined : json['heightPercentage'],
         'cornerRadiusLeftTop': !exists(json, 'cornerRadiusLeftTop') ? undefined : json['cornerRadiusLeftTop'],
         'cornerRadiusLeftBottom': !exists(json, 'cornerRadiusLeftBottom') ? undefined : json['cornerRadiusLeftBottom'],
         'cornerRadiusRightTop': !exists(json, 'cornerRadiusRightTop') ? undefined : json['cornerRadiusRightTop'],
         'cornerRadiusRightBottom': !exists(json, 'cornerRadiusRightBottom') ? undefined : json['cornerRadiusRightBottom'],
         'mainCornerRadius': !exists(json, 'mainCornerRadius') ? undefined : json['mainCornerRadius'],
-        'heightPercentage': !exists(json, 'heightPercentage') ? undefined : json['heightPercentage'],
+        'repeat': !exists(json, 'repeat') ? undefined : json['repeat'],
     };
 }
 
@@ -122,15 +142,17 @@ export function MediaBlockToJSON(value?: MediaBlock | null): any {
     }
     return {
         
+        'scaleMode': MediaScaleModeToJSON(value.scaleMode),
         'topAlignment': MediaTopAlignmentToJSON(value.topAlignment),
         'width': value.width,
         'height': value.height,
+        'heightPercentage': value.heightPercentage,
         'cornerRadiusLeftTop': value.cornerRadiusLeftTop,
         'cornerRadiusLeftBottom': value.cornerRadiusLeftBottom,
         'cornerRadiusRightTop': value.cornerRadiusRightTop,
         'cornerRadiusRightBottom': value.cornerRadiusRightBottom,
         'mainCornerRadius': value.mainCornerRadius,
-        'heightPercentage': value.heightPercentage,
+        'repeat': value.repeat,
     };
 }
 
