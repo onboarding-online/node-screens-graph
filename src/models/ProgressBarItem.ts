@@ -13,6 +13,18 @@
  */
 
 import { exists, mapValues } from '../runtime';
+import type { ElementTimer } from './ElementTimer';
+import {
+    ElementTimerFromJSON,
+    ElementTimerFromJSONTyped,
+    ElementTimerToJSON,
+} from './ElementTimer';
+import type { ProgressBarItemBlock } from './ProgressBarItemBlock';
+import {
+    ProgressBarItemBlockFromJSON,
+    ProgressBarItemBlockFromJSONTyped,
+    ProgressBarItemBlockToJSON,
+} from './ProgressBarItemBlock';
 import type { ProgressBarItemContent } from './ProgressBarItemContent';
 import {
     ProgressBarItemContentFromJSON,
@@ -40,10 +52,22 @@ export interface ProgressBarItem {
     valueTo: number;
     /**
      * 
+     * @type {ElementTimer}
+     * @memberof ProgressBarItem
+     */
+    timer?: ElementTimer;
+    /**
+     * 
      * @type {ProgressBarItemContent}
      * @memberof ProgressBarItem
      */
     content: ProgressBarItemContent;
+    /**
+     * 
+     * @type {ProgressBarItemBlock}
+     * @memberof ProgressBarItem
+     */
+    styles?: ProgressBarItemBlock;
 }
 
 /**
@@ -70,7 +94,9 @@ export function ProgressBarItemFromJSONTyped(json: any, ignoreDiscriminator: boo
         
         'valueFrom': json['valueFrom'],
         'valueTo': json['valueTo'],
+        'timer': !exists(json, 'timer') ? undefined : ElementTimerFromJSON(json['timer']),
         'content': ProgressBarItemContentFromJSON(json['content']),
+        'styles': !exists(json, 'styles') ? undefined : ProgressBarItemBlockFromJSON(json['styles']),
     };
 }
 
@@ -85,7 +111,9 @@ export function ProgressBarItemToJSON(value?: ProgressBarItem | null): any {
         
         'valueFrom': value.valueFrom,
         'valueTo': value.valueTo,
+        'timer': ElementTimerToJSON(value.timer),
         'content': ProgressBarItemContentToJSON(value.content),
+        'styles': ProgressBarItemBlockToJSON(value.styles),
     };
 }
 

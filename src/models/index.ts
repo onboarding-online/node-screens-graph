@@ -126,6 +126,7 @@ export * from './PositionOnDevice';
 export * from './ProgressBar';
 export * from './ProgressBarBlock';
 export * from './ProgressBarItem';
+export * from './ProgressBarItemBlock';
 export * from './ProgressBarItemContent';
 export * from './ProgressBarKind';
 export * from './ProgressBarLabel';

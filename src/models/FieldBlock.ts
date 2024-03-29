@@ -31,6 +31,12 @@ export interface FieldBlock {
      * @memberof FieldBlock
      */
     borderColor?: string;
+    /**
+     * Entered text color for field
+     * @type {string}
+     * @memberof FieldBlock
+     */
+    enteredTextColor?: string;
 }
 
 /**
@@ -54,6 +60,7 @@ export function FieldBlockFromJSONTyped(json: any, ignoreDiscriminator: boolean)
         
         'backgroundColor': !exists(json, 'backgroundColor') ? undefined : json['backgroundColor'],
         'borderColor': !exists(json, 'borderColor') ? undefined : json['borderColor'],
+        'enteredTextColor': !exists(json, 'enteredTextColor') ? undefined : json['enteredTextColor'],
     };
 }
 
@@ -68,6 +75,7 @@ export function FieldBlockToJSON(value?: FieldBlock | null): any {
         
         'backgroundColor': value.backgroundColor,
         'borderColor': value.borderColor,
+        'enteredTextColor': value.enteredTextColor,
     };
 }
 
