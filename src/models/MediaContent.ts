@@ -13,26 +13,26 @@
  */
 
 import {
-    BaseImage,
-    instanceOfBaseImage,
-    BaseImageFromJSON,
-    BaseImageFromJSONTyped,
-    BaseImageToJSON,
-} from './BaseImage';
+    MediaImage,
+    instanceOfMediaImage,
+    MediaImageFromJSON,
+    MediaImageFromJSONTyped,
+    MediaImageToJSON,
+} from './MediaImage';
 import {
-    BaseVideo,
-    instanceOfBaseVideo,
-    BaseVideoFromJSON,
-    BaseVideoFromJSONTyped,
-    BaseVideoToJSON,
-} from './BaseVideo';
+    MediaVideo,
+    instanceOfMediaVideo,
+    MediaVideoFromJSON,
+    MediaVideoFromJSONTyped,
+    MediaVideoToJSON,
+} from './MediaVideo';
 
 /**
  * @type MediaContent
  * Media content
  * @export
  */
-export type MediaContent = BaseImage | BaseVideo;
+export type MediaContent = MediaImage | MediaVideo;
 
 export function MediaContentFromJSON(json: any): MediaContent {
     return MediaContentFromJSONTyped(json, false);
@@ -42,7 +42,7 @@ export function MediaContentFromJSONTyped(json: any, ignoreDiscriminator: boolea
     if ((json === undefined) || (json === null)) {
         return json;
     }
-    return { ...BaseImageFromJSONTyped(json, true), ...BaseVideoFromJSONTyped(json, true) };
+    return { ...MediaImageFromJSONTyped(json, true), ...MediaVideoFromJSONTyped(json, true) };
 }
 
 export function MediaContentToJSON(value?: MediaContent | null): any {
@@ -53,11 +53,11 @@ export function MediaContentToJSON(value?: MediaContent | null): any {
         return null;
     }
 
-    if (instanceOfBaseImage(value)) {
-        return BaseImageToJSON(value as BaseImage);
+    if (instanceOfMediaImage(value)) {
+        return MediaImageToJSON(value as MediaImage);
     }
-    if (instanceOfBaseVideo(value)) {
-        return BaseVideoToJSON(value as BaseVideo);
+    if (instanceOfMediaVideo(value)) {
+        return MediaVideoToJSON(value as MediaVideo);
     }
 
     return {};
