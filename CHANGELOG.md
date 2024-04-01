@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.1.0-alpha.5](https://github.com/onboarding-online/node-screens-graph/compare/v1.1.0-alpha.4...v1.1.0-alpha.5) (2024-04-01)
+
+
+### Bug Fixes
+
+* change styles for paywall NavBar, basic Footer and more ([89a6782](https://github.com/onboarding-online/node-screens-graph/commit/89a67822caeec8ba1b4679e8a108d6f8b0f3943d))
+
 ## [1.1.0-alpha.4](https://github.com/onboarding-online/node-screens-graph/compare/v1.1.0-alpha.3...v1.1.0-alpha.4) (2024-03-30)
 
 
