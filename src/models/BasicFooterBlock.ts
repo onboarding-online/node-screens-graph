@@ -25,6 +25,30 @@ export interface BasicFooterBlock {
      * @memberof BasicFooterBlock
      */
     leftButtonWidthPercentage?: number;
+    /**
+     * Padding left for container
+     * @type {number}
+     * @memberof BasicFooterBlock
+     */
+    paddingLeft?: number;
+    /**
+     * Padding right for container
+     * @type {number}
+     * @memberof BasicFooterBlock
+     */
+    paddingRight?: number;
+    /**
+     * Padding top for container
+     * @type {number}
+     * @memberof BasicFooterBlock
+     */
+    paddingTop?: number;
+    /**
+     * Padding bottom for container
+     * @type {number}
+     * @memberof BasicFooterBlock
+     */
+    paddingBottom?: number;
 }
 
 /**
@@ -47,6 +71,10 @@ export function BasicFooterBlockFromJSONTyped(json: any, ignoreDiscriminator: bo
     return {
         
         'leftButtonWidthPercentage': !exists(json, 'leftButtonWidthPercentage') ? undefined : json['leftButtonWidthPercentage'],
+        'paddingLeft': !exists(json, 'paddingLeft') ? undefined : json['paddingLeft'],
+        'paddingRight': !exists(json, 'paddingRight') ? undefined : json['paddingRight'],
+        'paddingTop': !exists(json, 'paddingTop') ? undefined : json['paddingTop'],
+        'paddingBottom': !exists(json, 'paddingBottom') ? undefined : json['paddingBottom'],
     };
 }
 
@@ -60,6 +88,10 @@ export function BasicFooterBlockToJSON(value?: BasicFooterBlock | null): any {
     return {
         
         'leftButtonWidthPercentage': value.leftButtonWidthPercentage,
+        'paddingLeft': value.paddingLeft,
+        'paddingRight': value.paddingRight,
+        'paddingTop': value.paddingTop,
+        'paddingBottom': value.paddingBottom,
     };
 }
 

@@ -44,6 +44,30 @@ export interface PaywallFooterBlock {
      * @memberof PaywallFooterBlock
      */
     opacity?: number;
+    /**
+     * Padding left for container
+     * @type {number}
+     * @memberof PaywallFooterBlock
+     */
+    paddingLeft?: number;
+    /**
+     * Padding right for container
+     * @type {number}
+     * @memberof PaywallFooterBlock
+     */
+    paddingRight?: number;
+    /**
+     * Padding top for container
+     * @type {number}
+     * @memberof PaywallFooterBlock
+     */
+    paddingTop?: number;
+    /**
+     * Padding bottom for container
+     * @type {number}
+     * @memberof PaywallFooterBlock
+     */
+    paddingBottom?: number;
 }
 
 /**
@@ -68,6 +92,10 @@ export function PaywallFooterBlockFromJSONTyped(json: any, ignoreDiscriminator: 
         'elementsOrder': !exists(json, 'elementsOrder') ? undefined : PaywallFooterElementsOrderFromJSON(json['elementsOrder']),
         'backgroundColor': !exists(json, 'backgroundColor') ? undefined : json['backgroundColor'],
         'opacity': !exists(json, 'opacity') ? undefined : json['opacity'],
+        'paddingLeft': !exists(json, 'paddingLeft') ? undefined : json['paddingLeft'],
+        'paddingRight': !exists(json, 'paddingRight') ? undefined : json['paddingRight'],
+        'paddingTop': !exists(json, 'paddingTop') ? undefined : json['paddingTop'],
+        'paddingBottom': !exists(json, 'paddingBottom') ? undefined : json['paddingBottom'],
     };
 }
 
@@ -83,6 +111,10 @@ export function PaywallFooterBlockToJSON(value?: PaywallFooterBlock | null): any
         'elementsOrder': PaywallFooterElementsOrderToJSON(value.elementsOrder),
         'backgroundColor': value.backgroundColor,
         'opacity': value.opacity,
+        'paddingLeft': value.paddingLeft,
+        'paddingRight': value.paddingRight,
+        'paddingTop': value.paddingTop,
+        'paddingBottom': value.paddingBottom,
     };
 }
 

@@ -25,6 +25,12 @@ import {
     CloseHorizontalAlignmentFromJSONTyped,
     CloseHorizontalAlignmentToJSON,
 } from './CloseHorizontalAlignment';
+import type { RestoreHorizontalAlignment } from './RestoreHorizontalAlignment';
+import {
+    RestoreHorizontalAlignmentFromJSON,
+    RestoreHorizontalAlignmentFromJSONTyped,
+    RestoreHorizontalAlignmentToJSON,
+} from './RestoreHorizontalAlignment';
 
 /**
  * Styles for paywall navigation bar
@@ -32,6 +38,12 @@ import {
  * @interface PaywallNavigationBarBlock
  */
 export interface PaywallNavigationBarBlock {
+    /**
+     * 
+     * @type {RestoreHorizontalAlignment}
+     * @memberof PaywallNavigationBarBlock
+     */
+    restoreHorizontalAlignment?: RestoreHorizontalAlignment;
     /**
      * 
      * @type {CloseHorizontalAlignment}
@@ -71,6 +83,7 @@ export function PaywallNavigationBarBlockFromJSONTyped(json: any, ignoreDiscrimi
     }
     return {
         
+        'restoreHorizontalAlignment': !exists(json, 'restoreHorizontalAlignment') ? undefined : RestoreHorizontalAlignmentFromJSON(json['restoreHorizontalAlignment']),
         'closeHorizontalAlignment': !exists(json, 'closeHorizontalAlignment') ? undefined : CloseHorizontalAlignmentFromJSON(json['closeHorizontalAlignment']),
         'closeAppearance': !exists(json, 'closeAppearance') ? undefined : CloseAppearanceFromJSON(json['closeAppearance']),
         'closeVisibleAfterTimerValue': !exists(json, 'closeVisibleAfterTimerValue') ? undefined : json['closeVisibleAfterTimerValue'],
@@ -86,6 +99,7 @@ export function PaywallNavigationBarBlockToJSON(value?: PaywallNavigationBarBloc
     }
     return {
         
+        'restoreHorizontalAlignment': RestoreHorizontalAlignmentToJSON(value.restoreHorizontalAlignment),
         'closeHorizontalAlignment': CloseHorizontalAlignmentToJSON(value.closeHorizontalAlignment),
         'closeAppearance': CloseAppearanceToJSON(value.closeAppearance),
         'closeVisibleAfterTimerValue': value.closeVisibleAfterTimerValue,

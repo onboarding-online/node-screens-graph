@@ -100,6 +100,12 @@ export interface ItemTypeSubscription {
     descriptionLabel?: Text;
     /**
      * 
+     * @type {Text}
+     * @memberof ItemTypeSubscription
+     */
+    purchaseButtonLabel?: Text;
+    /**
+     * 
      * @type {boolean}
      * @memberof ItemTypeSubscription
      */
@@ -172,6 +178,7 @@ export function ItemTypeSubscriptionFromJSONTyped(json: any, ignoreDiscriminator
         'rightLabelTop': TextFromJSON(json['rightLabelTop']),
         'rightLabelBottom': TextFromJSON(json['rightLabelBottom']),
         'descriptionLabel': !exists(json, 'descriptionLabel') ? undefined : TextFromJSON(json['descriptionLabel']),
+        'purchaseButtonLabel': !exists(json, 'purchaseButtonLabel') ? undefined : TextFromJSON(json['purchaseButtonLabel']),
         'isSelected': json['isSelected'],
         'badge': !exists(json, 'badge') ? undefined : BadgeFromJSON(json['badge']),
         'image': !exists(json, 'image') ? undefined : ImageFromJSON(json['image']),
@@ -197,6 +204,7 @@ export function ItemTypeSubscriptionToJSON(value?: ItemTypeSubscription | null):
         'rightLabelTop': TextToJSON(value.rightLabelTop),
         'rightLabelBottom': TextToJSON(value.rightLabelBottom),
         'descriptionLabel': TextToJSON(value.descriptionLabel),
+        'purchaseButtonLabel': TextToJSON(value.purchaseButtonLabel),
         'isSelected': value.isSelected,
         'badge': BadgeToJSON(value.badge),
         'image': ImageToJSON(value.image),

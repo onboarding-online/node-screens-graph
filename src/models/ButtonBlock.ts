@@ -13,6 +13,12 @@
  */
 
 import { exists, mapValues } from '../runtime';
+import type { ButtonMovingAnimation } from './ButtonMovingAnimation';
+import {
+    ButtonMovingAnimationFromJSON,
+    ButtonMovingAnimationFromJSONTyped,
+    ButtonMovingAnimationToJSON,
+} from './ButtonMovingAnimation';
 import type { ButtonVisibility } from './ButtonVisibility';
 import {
     ButtonVisibilityFromJSON,
@@ -32,6 +38,12 @@ export interface ButtonBlock {
      * @memberof ButtonBlock
      */
     visibility?: ButtonVisibility;
+    /**
+     * 
+     * @type {ButtonMovingAnimation}
+     * @memberof ButtonBlock
+     */
+    movingAnimation?: ButtonMovingAnimation;
     /**
      * If true, the input will take up the full width of its container
      * @type {boolean}
@@ -120,6 +132,7 @@ export function ButtonBlockFromJSONTyped(json: any, ignoreDiscriminator: boolean
     return {
         
         'visibility': !exists(json, 'visibility') ? undefined : ButtonVisibilityFromJSON(json['visibility']),
+        'movingAnimation': !exists(json, 'movingAnimation') ? undefined : ButtonMovingAnimationFromJSON(json['movingAnimation']),
         'fullWidth': !exists(json, 'fullWidth') ? undefined : json['fullWidth'],
         'backgroundColor': !exists(json, 'backgroundColor') ? undefined : json['backgroundColor'],
         'paddingLeft': !exists(json, 'paddingLeft') ? undefined : json['paddingLeft'],
@@ -144,6 +157,7 @@ export function ButtonBlockToJSON(value?: ButtonBlock | null): any {
     return {
         
         'visibility': ButtonVisibilityToJSON(value.visibility),
+        'movingAnimation': ButtonMovingAnimationToJSON(value.movingAnimation),
         'fullWidth': value.fullWidth,
         'backgroundColor': value.backgroundColor,
         'paddingLeft': value.paddingLeft,

@@ -43,6 +43,12 @@ import {
     PaywallNavigationBarBlockFromJSONTyped,
     PaywallNavigationBarBlockToJSON,
 } from './PaywallNavigationBarBlock';
+import type { Text } from './Text';
+import {
+    TextFromJSON,
+    TextFromJSONTyped,
+    TextToJSON,
+} from './Text';
 
 /**
  * Paywall navigation bar
@@ -62,6 +68,12 @@ export interface PaywallNavigationBar {
      * @memberof PaywallNavigationBar
      */
     close?: Button;
+    /**
+     * 
+     * @type {Text}
+     * @memberof PaywallNavigationBar
+     */
+    restore?: Text;
     /**
      * 
      * @type {PaywallNavigationBarBlock}
@@ -123,6 +135,7 @@ export function PaywallNavigationBarFromJSONTyped(json: any, ignoreDiscriminator
         
         'paywallNavigationBar': json['paywallNavigationBar'],
         'close': !exists(json, 'close') ? undefined : ButtonFromJSON(json['close']),
+        'restore': !exists(json, 'restore') ? undefined : TextFromJSON(json['restore']),
         'styles': PaywallNavigationBarBlockFromJSON(json['styles']),
         'back': !exists(json, 'back') ? undefined : ButtonFromJSON(json['back']),
         'skip': !exists(json, 'skip') ? undefined : ButtonFromJSON(json['skip']),
@@ -143,6 +156,7 @@ export function PaywallNavigationBarToJSON(value?: PaywallNavigationBar | null):
         
         'paywallNavigationBar': value.paywallNavigationBar,
         'close': ButtonToJSON(value.close),
+        'restore': TextToJSON(value.restore),
         'styles': PaywallNavigationBarBlockToJSON(value.styles),
         'back': ButtonToJSON(value.back),
         'skip': ButtonToJSON(value.skip),
