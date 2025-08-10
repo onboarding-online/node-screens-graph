@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.1.3](https://github.com/onboarding-online/node-screens-graph/compare/v1.1.2...v1.1.3) (2025-08-10)
+
+
+### Bug Fixes
+
+* delete legacy script ([3890fe8](https://github.com/onboarding-online/node-screens-graph/commit/3890fe8e025abf9462b21bb1b12ca2d62240d9ee))
+* detele deprecates sh script ([35c2736](https://github.com/onboarding-online/node-screens-graph/commit/35c27367bcac6e076b844bfa5ed4790e39a8d894))
+
 ### [1.1.2](https://github.com/onboarding-online/node-screens-graph/compare/v1.1.1...v1.1.2) (2025-08-10)
 
 
