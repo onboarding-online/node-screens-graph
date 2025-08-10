@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.1.2](https://github.com/onboarding-online/node-screens-graph/compare/v1.1.1...v1.1.2) (2025-08-10)
+
+
+### Bug Fixes
+
+* update packages ([4bb6c83](https://github.com/onboarding-online/node-screens-graph/commit/4bb6c83234eb13657018055dfb5c9b9e5180db37))
+
 ### [1.1.1](https://github.com/onboarding-online/node-screens-graph/compare/v1.1.0...v1.1.1) (2025-04-09)
 
 
